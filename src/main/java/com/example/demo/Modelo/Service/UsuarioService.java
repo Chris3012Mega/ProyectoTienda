@@ -3,8 +3,8 @@ package com.example.demo.Modelo.Service;
 import com.example.demo.Modelo.Entity.Usuario;
 import com.example.demo.Modelo.Repo.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 @Service
 public class UsuarioService {
 
@@ -23,4 +23,11 @@ public class UsuarioService {
     public Usuario iniciarSesion(String correo, String contraseña) {
         return usuarioRepository.iniciarSesion(correo, contraseña);
     }
+
+    // 🔹 Nuevo método
+    public Usuario buscarPorCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
+    }
 }
+
+

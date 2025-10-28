@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgroMarket - Registro</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #f9f9f9; color: #333; }
+        .navbar-brand { letter-spacing: 1px; }
+        .nav-user-icon { font-size: 1.3rem; color: #2e7d32; transition: color 0.3s ease, transform 0.2s ease; }
+        .nav-user-icon:hover { color: #1b5e20; transform: scale(1.1); }
+        .register-container { max-width: 460px; margin: 80px auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); padding: 2rem; }
+        h2 { color: #2e7d32; font-weight: 700; }
+        .btn-success { background-color: #2e7d32; border: none; transition: all 0.3s ease; }
+        .btn-success:hover { background-color: #218838; transform: scale(1.03); }
+        .toggle-link { color: #2e7d32; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .toggle-link:hover { color: #1b5e20; text-decoration: underline; }
+        .success-message { text-align: center; background-color: #e8f5e9; color: #2e7d32; border-radius: 8px; padding: 15px; margin-top: 15px; font-weight: 500; }
+        .alert-error { text-align: center; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-success" th:href="@{/}">AgroMarket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Catálogo</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logistica}">Logística</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/pagos}">Pagos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/carrito}">Carrito</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a th:href="@{/usuario/login}" class="nav-link active">
+                        <i class="bi bi-person-circle nav-user-icon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Register Section -->
+<div class="register-container" data-aos="fade-up">
+    <h2 class="text-center mb-4">Crear Cuenta</h2>
+
+    <!-- Mensaje de éxito -->
+    <div th:if="${exito}" class="success-message">
+        ✅ Registro exitoso. Ahora puedes iniciar sesión.
+    </div>
+
+    <!-- Mensaje de error -->
+    <div th:if="${error}" class="alert alert-danger alert-error" th:text="${error}"></div>
+
+    <form th:action="@{/usuario/registro}" th:object="${usuario}" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre completo</label>
+            <input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo electrónico</label>
+            <input type="email" th:field="*{correo}" class="form-control" id="correo" placeholder="tuemail@ejemplo.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="contraseña" class="form-label">Contraseña</label>
+            <input type="password" th:field="*{contraseña}" class="form-control" id="contraseña" placeholder="********" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="tel" th:field="*{telefono}" class="form-control" id="telefono" placeholder="+51 999 123 456" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Registrarme</button>
+    </form>
+
+    <p class="text-center mt-3">
+        ¿Ya tienes cuenta?
+        <a th:href="@{/usuario/login}" class="toggle-link">Inicia sesión aquí</a>
+    </p>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+        <p class="mb-1">AgroMarket © 2025 - Todos los derechos reservados</p>
+        <small>Contacto: <a href="mailto:agromarket@gmail.com" class="text-decoration-none text-light">agromarket@gmail.com</a></small>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
+</body>
+</html>

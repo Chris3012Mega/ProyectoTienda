@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgroMarket - Inicio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        /* --- General --- */
+        html, body {
+          height: 100%;
+          margin: 0;
+          font-family: 'Poppins', sans-serif;
+          background-color: #f9f9f9;
+          color: #333;
+          display: flex;
+          flex-direction: column;
+        }
+
+        main {
+          flex: 1;
+        }
+
+        /* --- Navbar --- */
+        .navbar-brand {
+          letter-spacing: 1px;
+        }
+
+        .btn-success {
+          transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+          background-color: #218838;
+          transform: scale(1.05);
+        }
+
+        /* --- Cards --- */
+        .card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, .card-title {
+          color: #2e7d32;
+        }
+
+        /* --- Icono de usuario --- */
+        .nav-user-icon {
+          font-size: 1.3rem;
+          color: #2e7d32;
+          transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-user-icon:hover {
+          color: #1b5e20;
+          transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+          background-color: #212529;
+          color: #fff;
+          text-align: center;
+          padding: 1.5rem 0;
+          font-size: 0.9rem;
+          margin-top: auto;
+        }
+
+        footer a {
+          color: #9ae6b4;
+          text-decoration: none;
+        }
+
+        footer a:hover {
+          text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-success" href="#">AgroMarket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+                <li class="nav-item"><a class="nav-link" href="logistica.html">Logística</a></li>
+                <li class="nav-item"><a class="nav-link" href="pagos.html">Pagos</a></li>
+                <li class="nav-item"><a class="nav-link" href="carrito.html">Carrito</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a href="login.html" class="nav-link">
+                        <i class="bi bi-person-circle nav-user-icon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section class="bg-light py-5 text-center">
+        <div class="container" data-aos="fade-up">
+            <h1 class="fw-bold mb-3">Bienvenido a <span class="text-success">AgroMarket</span></h1>
+            <p class="lead">Conectamos a productores locales con consumidores para un comercio justo y sostenible.</p>
+            <a href="catalogo.html" class="btn btn-success btn-lg mt-3">Explorar Catálogo</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="container py-5">
+        <div class="row text-center g-4">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">🌿 Productos sostenibles</h5>
+                        <p class="card-text">Descubre productos agrícolas garantizados de manera sostenible.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">🚛 Gestión de logística</h5>
+                        <p class="card-text">Recibe tus pedidos sin complicaciones, nosotros nos encargamos de la distribución.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h5 class="card-title">💳 Métodos de pago</h5>
+                        <p class="card-text">Paga de forma confiable y segura con nuestros métodos disponibles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p class="mb-1">AgroMarket © 2025 - Todos los derechos reservados</p>
+        <small>Contacto: <a href="mailto:agromarket@gmail.com">agromarket@gmail.com</a></small>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
+</body>
+</html>
