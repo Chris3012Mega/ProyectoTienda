@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seleccionar Método de Pago</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+        .pago-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .pago-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .pago-icon {
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-success" th:href="@{/}">AgroMarket</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/}">Inicio</a></li>
+                <a class="nav-link active" th:href="@{/catalogo}">Catálogo</a>
+                <li class="nav-item"><a class="nav-link" th:href="@{/logistica}">Logística</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/historial}">Historial de pedidos </a></li>
+
+                <li class="nav-item"><a class="nav-link" th:href="@{/pagos}">Pagos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/carrito}">Carrito</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/productos/nuevo}">Agregar Producto</a>
+                </li>
+                <li class="nav-item ms-lg-3">
+                    <a th:href="@{/login}" class="nav-link">
+                        <i class="bi bi-person-circle nav-user-icon"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h2 class="text-center fw-bold text-success mb-5">💰 Selecciona tu método de pago</h2>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- Opción 1: Tarjeta -->
+        <div class="col-10 col-md-4">
+            <div class="card pago-card text-center p-4" data-bs-toggle="modal" data-bs-target="#modalTarjeta">
+                <div class="pago-icon mb-3">💳</div>
+                <h5 class="fw-bold">Pago con Tarjeta</h5>
+                <p class="text-muted small">Visa, MasterCard, American Express</p>
+                <button class="btn btn-success mt-2">Seleccionar</button>
+            </div>
+        </div>
+
+        <!-- Opción 2: Transferencia móvil -->
+        <div class="col-10 col-md-4">
+            <div class="card pago-card text-center p-4" data-bs-toggle="modal" data-bs-target="#modalTransferencia">
+                <div class="pago-icon mb-3">📱</div>
+                <h5 class="fw-bold">Transferencia móvil</h5>
+                <p class="text-muted small">Yape y  Plin </p>
+                <button class="btn btn-success mt-2">Seleccionar</button>
+            </div>
+        </div>
+
+
+        <!-- Opción 3: Contra entrega -->
+        <div class="col-10 col-md-4">
+            <div class="card pago-card text-center p-4">
+                <div class="pago-icon mb-3">🚚</div>
+                <h5 class="fw-bold">Pago contra entrega</h5>
+                <p class="text-muted small">Paga al recibir tu pedido</p>
+                <a href="#" class="btn btn-success mt-2">Seleccionar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/carrito" class="btn btn-outline-success">← Volver al carrito</a>
+    </div>
+</div>
+
+<!-- 🔹 MODAL TARJETA -->
+<div class="modal fade" id="modalTarjeta" tabindex="-1" aria-labelledby="modalTarjetaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="modalTarjetaLabel">💳 Pago con Tarjeta</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Nombre en la tarjeta</label>
+                        <input type="text" class="form-control" placeholder="Ej: Christofer Claudio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Número de tarjeta</label>
+                        <input type="text" maxlength="16" class="form-control" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label class="form-label">Fecha de expiración</label>
+                            <input type="text" class="form-control" placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">CVV</label>
+                            <input type="password" maxlength="3" class="form-control" placeholder="123" required>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success text-center fw-bold">
+                        Monto a pagar: S/ <span th:text="${total}">0.00</span>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success px-5" id="btnContinuarEnvioTarjeta">
+                            Confirmar pago →
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔹 MODAL TRANSFERENCIA MÓVIL -->
+<div class="modal fade" id="modalTransferencia" tabindex="-1" aria-labelledby="modalTransferenciaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="modalTransferenciaLabel">📱 Transferencia móvil</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+
+                <p class="text-muted mb-3">
+                    Escanea el código QR con Yape o Plin para completar tu pago.
+                </p>
+
+                <!-- 🔹 Imagen QR -->
+                <img src="/images/qr.png" alt="Código QR"
+                     class="img-fluid rounded shadow-sm mb-3"
+                     style="max-width: 250px;">
+
+                <div class="alert alert-success fw-bold">
+                    Monto a pagar: S/ <span th:text="${total}">0.00</span>
+                </div>
+
+                <button type="button" class="btn btn-success px-5 mt-3" data-bs-dismiss="modal">
+                    Siguiente →
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnContinuarEnvio = document.getElementById('btnContinuarEnvioTarjeta');
+
+        btnContinuarEnvio.addEventListener('click', function() {
+            // Cierra el modal de tarjeta
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalTarjeta'));
+            modal.hide();
+
+            // Redirige a la página de información de envío
+            setTimeout(() => {
+                window.location.href = '/envio';
+            }, 400); // pequeño retraso para que se vea el cierre suave
+        });
+    });
+</script>
+
+</body>
+</html>

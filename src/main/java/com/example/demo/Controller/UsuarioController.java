@@ -17,14 +17,14 @@ public class UsuarioController {
 
     private final sha256 sha = new sha256(); // Clase para SHA-256
 
-    // 📌 Formulario de registro
+    //  Formulario de registro
     @GetMapping("/registro")
     public String mostrarFormularioRegistro(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registrar"; // nombre del HTML
     }
 
-    // 📌 Guardar nuevo usuario
+    // Guardar nuevo usuario
     @PostMapping("/registro")
     public String registrarUsuario(@ModelAttribute Usuario usuario, Model model) {
         // Validar si el correo ya existe

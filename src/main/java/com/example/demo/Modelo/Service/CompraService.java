@@ -4,7 +4,6 @@ import com.example.demo.Modelo.Entity.Compra;
 import com.example.demo.Modelo.Repo.CompraRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -18,7 +17,6 @@ public class CompraService {
 
     @Transactional
     public void guardarProducto(Compra compra, Long usuarioId) {
-        // Llamamos al procedimiento almacenado
         compraRepository.registrarCompra(
                 compra.getProveedor(),
                 compra.getProducto(),
@@ -31,4 +29,13 @@ public class CompraService {
     public List<Compra> listarProductosUsuario(Long usuarioId) {
         return compraRepository.verComprasUsuario(usuarioId);
     }
+
+    // ✅ Este método es el que se usa para mostrar TODO el catálogo
+    public List<Compra> listarTodos() {
+        return compraRepository.findAll();
+    }
+    public Compra buscarPorId(Long id) {
+        return compraRepository.findById(id).orElse(null);
+    }
+
 }

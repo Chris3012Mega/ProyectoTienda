@@ -12,44 +12,47 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/productos")
 public class CatalogoController {
 
     private final CompraService compraService;
     private final UsuarioService usuarioService;
 
-    // Inyección vía constructor
+
     public CatalogoController(CompraService compraService, UsuarioService usuarioService) {
         this.compraService = compraService;
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/catalogo")
-    public String verCatalogo(HttpSession session, Model model) {
-        Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
-        if (usuario == null) return "redirect:/usuario/login";
 
-        List<Compra> productos = compraService.listarProductosUsuario(usuario.getId());
+    @GetMapping("/catalogo")
+    public String verCatalogo(Model model) {
+
+        List<Compra> productos = compraService.listarTodos();
         model.addAttribute("productos", productos);
         return "catalogo";
     }
 
-    @GetMapping("/nuevo")
+
+    @GetMapping("/productos/nuevo")
     public String nuevoProducto(HttpSession session, Model model) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
-        if (usuario == null) return "redirect:/usuario/login";
+        if (usuario == null) {
+            return "redirect:/usuario/login";
+        }
 
         model.addAttribute("compra", new Compra());
         return "nuevo_producto";
     }
 
-    @PostMapping("/guardar")
+
+    @PostMapping("/productos/guardar")
     public String guardarProducto(@ModelAttribute Compra compra, HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
-        if (usuario == null) return "redirect:/usuario/login";
+        if (usuario == null) {
+            return "redirect:/usuario/login";
+        }
 
-        // Asegúrate que el método en el servicio reciba un objeto Compra
         compraService.guardarProducto(compra, usuario.getId());
-        return "redirect:/productos/catalogo";
+        return "redirect:/catalogo";
     }
 }

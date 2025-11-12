@@ -14,12 +14,12 @@ public class PaginasController {
     public String pagos() {
         return "pagos";
     }
-
-    @GetMapping("/carrito")
-    public String carrito() {
-        return "carrito";
-    }
-
+//
+    // @GetMapping("/carrito")
+   // public String carrito() {
+//return "carrito";
+   // }
+//
     @GetMapping("/login")
     public String login() {
         return "login";
