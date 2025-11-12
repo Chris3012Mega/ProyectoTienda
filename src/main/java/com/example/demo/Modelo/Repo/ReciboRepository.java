@@ -34,4 +34,10 @@ public interface ReciboRepository extends JpaRepository<Recibo, Long> {
 
     @Query("SELECT r FROM Recibo r WHERE r.usuarioId = :usuarioId ORDER BY r.fecha DESC")
     List<Recibo> findByUsuarioId(Long usuarioId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Recibo r SET r.estado = :estado WHERE r.id = :id")
+    void actualizarEstadoRecibo(@Param("id") Long id, @Param("estado") com.example.demo.Modelo.Entity.Recibo.Estado estado);
+
 }

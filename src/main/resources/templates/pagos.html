@@ -51,17 +51,29 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand fw-bold text-success" th:href="@{/index}">AgroMarket</a>
+        <a class="navbar-brand fw-bold text-success" th:href="@{/}">AgroMarket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/index}">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/catalogo}">Catálogo</a></li>
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/}">Inicio</a></li>
+                <a class="nav-link active" th:href="@{/catalogo}">Catálogo</a>
                 <li class="nav-item"><a class="nav-link" th:href="@{/logistica}">Logística</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/pagos}">Pagos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/historial}">Historial de pedidos </a></li>
+
+                <li class="nav-item"><a class="nav-link" th:href="@{/pagos}">Pagos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/carrito}">Carrito</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/productos/nuevo}">Agregar Producto</a>
+                </li>
+                <li class="nav-item"><a class="nav-link active fw-bold" th:href="@{/mis-ventas}">Mis Ventas</a></li>
+
+                <li class="nav-item ms-lg-3">
+                    <a th:href="@{/login}" class="nav-link">
+                        <i class="bi bi-person-circle nav-user-icon"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
